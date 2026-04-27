@@ -68,9 +68,13 @@ export default function RecipeFormPage() {
     setIngredients([...ingredients, { name: "", quantity: 0, unit: "" }]);
   }
 
-  function updateIngredient(index: number, field: string, value: any) {
+  function updateIngredient(
+    index: number,
+    field: keyof (typeof ingredients)[number],
+    value: string | number,
+  ) {
     const updated = [...ingredients];
-    updated[index][field as keyof (typeof updated)[0]] = value;
+    updated[index][field] = value as never;
     setIngredients(updated);
   }
 
